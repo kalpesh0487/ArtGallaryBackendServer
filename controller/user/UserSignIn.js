@@ -27,7 +27,8 @@ async function userSignInContoller(req,res){
             const token = jwt.sign(tokenData, process.env.TOKEN_SECRET_KEY, {expiresIn: 60 * 60 * 8});
             const tokenOption = {
                 httpOnly : true,
-                secure: true
+                secure: true,
+                sameSite: 'None'
             }
             res.cookie("token", token, tokenOption).json({
                 message: "Login successfully",
